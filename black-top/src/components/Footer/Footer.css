@@ -1,0 +1,174 @@
+.footer {
+  background: #1a1a1a;
+  color: white;
+  position: relative;
+  margin-top: 100px;
+}
+
+/* Wavy SVG Top Edge - FIXED */
+.wave-container {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  line-height: 0;
+}
+
+.wave-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wave-path {
+  fill: #1a1a1a;
+}
+
+/* Main Footer Content */
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 2rem 60px;
+  align-items: start;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Left Column - Logo */
+.footer-logo {
+  margin-bottom: 1.5rem;
+}
+
+.footer-logo img {
+  height: 50px;
+  width: auto;
+  margin-bottom: 1rem;
+}
+
+.logo-fallback {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: none;
+}
+
+.footer-logo:not(:has(img)) .logo-fallback {
+  display: block;
+}
+
+.footer-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cccccc;
+  margin: 0;
+}
+
+/* Middle Column - Quick Links */
+.footer-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #d4a762;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+  color: #cccccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+.footer-links a:hover {
+  color: #d4a762;
+}
+
+/* Right Column - Contact Info */
+.contact-info p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #cccccc;
+  line-height: 1.5;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 40px;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #999;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 968px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+    padding: 80px 2rem 40px;
+  }
+  
+  .wave-container {
+    top: -80px;
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    padding: 60px 1rem 30px;
+  }
+  
+  .footer-title {
+    font-size: 1.2rem;
+  }
+  
+  .copyright {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .wave-container {
+    top: -60px;
+    height: 60px;
+  }
+  
+  .footer-content {
+    gap: 30px;
+  }
+  
+  .footer-logo img {
+    height: 40px;
+  }
+}
