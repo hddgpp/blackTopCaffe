@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import blackTop1 from '/images/blacktop-img4.webp'
-import blackTop2 from '/images/blacktop-img3.webp'
-import blackTop3 from '/images/blacktop-img5.webp'
-import logo from '/images/blackTop-logo.jpg'
+import blackTop1 from '../../assets/images/blacktop-img4.webp'
+import blackTop2 from '../../assets/images/blacktop-img3.webp'
+import blackTop3 from '../../assets/images/blacktop-img5.webp'
+import logo from '../../assets/images/blackTop-logo.jpg'
 import './Hero.css';
 
 const Hero = () => {

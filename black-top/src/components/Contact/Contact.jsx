@@ -2,10 +2,10 @@ import React from 'react';
 import './Contact.css';
 
 // Import your icon images
-import locationIcon from '/images/location-icon.jpg';
-import hoursIcon from '/images/hours-icon.jpg';
-import phoneIcon from '/images/phone-icon.jpg';
-import ig from "/images/ig.png"
+import locationIcon from '../../assets/images/location-icon.jpg';
+import hoursIcon from '../../assets/images/hours-icon.jpg';
+import phoneIcon from '../../assets/images/phone-icon.jpg';
+import ig from "../../assets/images/ig.png"
 
 const Contact = () => {
   const handleGetDirections = () => {

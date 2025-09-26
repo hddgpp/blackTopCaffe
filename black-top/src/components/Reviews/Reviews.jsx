@@ -1,7 +1,7 @@
 import React from 'react';
-import blackTop1 from '../../../public/images/blacktop-img4.webp'
-import blackTop2 from '../../../public/images/blacktop-img3.webp'
-import blackTop3 from '../../../public/images/blacktop-img5.webp'
+import blackTop1 from '../../assets/images/blacktop-img4.webp'
+import blackTop2 from '../../assets/images/blacktop-img3.webp'
+import blackTop3 from '../../assets/images/blacktop-img5.webp'
 import './Reviews.css';
 
 const Reviews = () => {

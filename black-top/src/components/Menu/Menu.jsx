@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { menuItems } from '../../data/menuItems';
-import menuImage from '/images/menu-photo.png';
+import menuImage from '../../assets/images/menu-photo.png';
 import './Menu.css';
 
 // Import your filter icon images
-import allIcon from '../../../public/images/all-icon.jpg';
-import drinksIcon from '../../../public/images/drinks-icon.jpg';
-import dessertsIcon from '../../../public/images/desserts-icon.jpg';
-import healthyIcon from '../../../public/images/healthy-icon.jpg';
+import allIcon from '../../assets/images/all-icon.jpg';
+import drinksIcon from '../../assets/images/drinks-icon.jpg';
+import dessertsIcon from '../../assets/images/desserts-icon.jpg';
+import healthyIcon from '../../assets/images/healthy-icon.jpg';
 
 const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('all');
