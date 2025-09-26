@@ -35,7 +35,7 @@ const Footer = () => {
         {/* Left Column - Logo & Description */}
         <div className="footer-column">
           <div className="footer-logo">
-            <img src="../../../public/images/logo22.png" alt="Blacktop Coffee" />
+            <img src="../../assets/images/logo22.png" alt="Blacktop Coffee" />
             <h2>BlackTop</h2>
             <span className="logo-fallback">BLACKTOP</span>
           </div>
