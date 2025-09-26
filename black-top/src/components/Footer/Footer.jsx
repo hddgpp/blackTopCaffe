@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import logo2 from '../../assets/images/logo22.png'
 
 const Footer = () => {
   return (
@@ -35,7 +36,7 @@ const Footer = () => {
         {/* Left Column - Logo & Description */}
         <div className="footer-column">
           <div className="footer-logo">
-            <img src="src/assets/images/logo22.png" alt="Blacktop Coffee" />
+            <img src={logo2} alt="Blacktop Coffee" />
             <h2>BlackTop</h2>
             <span className="logo-fallback">BLACKTOP</span>
           </div>
