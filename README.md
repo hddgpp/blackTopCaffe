@@ -2,12 +2,10 @@
 
 A sleek, responsive website for Blacktop Coffee built with React and modern CSS. Features a clean design, interactive menu, and seamless user experience.
 
-live demo 👉: https://blacktopcoffee.netlify.app
-
 ![Blacktop Coffee Website](https://img.shields.io/badge/React-18.x-blue) ![License](https://img.shields.io/badge/License-MIT-green) ![Status](https://img.shields.io/badge/Status-Live-success)
 
 ## 🚀 Live Demo
-[View Live Site](https://blacktop-coffee.netlify.app) *[Add your deployment link here]*
+[View Live Site](https://blacktopcoffee.netlify.app)
 
 ## 📸 Screenshots
 
