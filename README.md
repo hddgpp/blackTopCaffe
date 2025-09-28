@@ -32,7 +32,7 @@ A sleek, responsive website for Blacktop Coffee built with React and modern CSS.
 - **Frontend:** React 18, CSS3, HTML5
 - **Icons:** Custom SVG & React Icons
 - **Maps:** Google Maps API
-- **Deployment:** Netlify/Vercel
+- **Deployment:** Netlify
 
 ## 📁 Project Structure
 
