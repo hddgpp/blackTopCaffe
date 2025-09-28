@@ -1,7 +1,6 @@
 import React from 'react';
 import './Contact.css';
 
-// Import your icon images
 import locationIcon from '../../assets/images/location-icon.jpg';
 import hoursIcon from '../../assets/images/hours-icon.jpg';
 import phoneIcon from '../../assets/images/phone-icon.jpg';
