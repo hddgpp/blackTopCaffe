@@ -61,7 +61,7 @@ src/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/blacktop-coffee.git
+   git clone https://github.com/hddgpp/blacktop-coffee.git
    cd blacktop-coffee
    npm install
    npm start
