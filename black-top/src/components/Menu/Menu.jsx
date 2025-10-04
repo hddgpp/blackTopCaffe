@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { menuItems } from '../../data/menuItems';
 import menuImage from '../../assets/images/menu-photo.png';
+import OrderGenerator from './OrderGenerator/OrderGenerator.jsx';
 import './Menu.css';
 
 // Import your filter icon images
@@ -79,6 +80,13 @@ const Menu = () => {
           </button>
         ))}
       </div>
+
+      {/* AI ORDER GENERATOR - NEW SECTION */}
+      <OrderGenerator 
+        activeCategory={activeCategory}
+        menuItems={menuItems}
+        filterCategories={filterCategories}
+      />
 
       {/* Two-Column Layout */}
       <div className="menu-container">

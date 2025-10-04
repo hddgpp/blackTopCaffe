@@ -1,0 +1,619 @@
+/* components/OrderGenerator/OrderGenerator.css */
+/* Budget Input Styles */
+.budget-input-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin: 2rem auto;
+  max-width: 500px;
+  border: 2px solid #f0f0f0;
+}
+
+.budget-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.budget-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.budget-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.budget-input {
+  width: 100%;
+  padding: 1rem 2.5rem 1rem 1rem;
+  border: 2px solid #d4a762;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.budget-input:focus {
+  outline: none;
+  border-color: #c1914b;
+  box-shadow: 0 0 0 3px rgba(212, 167, 98, 0.1);
+  transform: translateY(-1px);
+}
+
+.currency-symbol {
+  position: absolute;
+  right: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #d4a762;
+}
+
+.budget-hint {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.generate-btn {
+  background: #d4a762;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.generate-btn:hover:not(.disabled) {
+  background: #c1914b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 167, 98, 0.3);
+}
+
+.generate-btn.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.loading-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ADD THESE STYLES TO OrderGenerator.css */
+/* AI Results Styles */
+.ai-results-loading {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin: 1rem auto;
+  max-width: 500px;
+}
+
+.loading-spinner.large {
+  width: 40px;
+  height: 40px;
+  border-width: 3px;
+  margin: 0 auto 1rem;
+}
+
+.ai-results-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  margin: 1rem auto;
+}
+
+.ai-results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.ai-results-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+}
+
+.clear-suggestions-btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-suggestions-btn:hover {
+  background: #ff3742;
+  transform: translateY(-1px);
+}
+
+.suggestions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.suggestion-card {
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.suggestion-card:hover {
+  border-color: #d4a762;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(212, 167, 98, 0.1);
+}
+
+.suggestion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.suggestion-number {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.suggestion-total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #d4a762;
+}
+
+.suggestion-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.suggestion-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.item-name {
+  font-weight: 500;
+  color: #000;
+}
+
+.item-price {
+  font-weight: 600;
+  color: #666;
+}
+
+.suggestion-footer {
+  text-align: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.remaining-budget {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .suggestions-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .ai-results-container {
+    padding: 1.5rem;
+  }
+  
+  .ai-results-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .ai-results-container {
+    padding: 1rem;
+  }
+  
+  .suggestion-card {
+    padding: 1rem;
+  }
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .budget-input-container {
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+  }
+  
+  .budget-input {
+    padding: 0.8rem 2rem 0.8rem 0.8rem;
+    font-size: 1.1rem;
+  }
+  
+  .generate-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .budget-input-container {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+  
+  .budget-label {
+    font-size: 1rem;
+  }
+  
+  .budget-hint {
+    font-size: 0.8rem;
+  }
+}
+
+/* ADD TO OrderGenerator.css */
+.order-generator-container {
+  margin: 2rem auto;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .order-generator-container {
+    padding: 0 1rem;
+    margin: 1.5rem auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .order-generator-container {
+    padding: 0 0.5rem;
+    margin: 1rem auto;
+  }
+}
+
+/* ERROR STATE STYLES */
+.ai-results-container.error-state {
+  border-left: 4px solid #ffa502;
+  background: #fff9e6;
+}
+
+.error-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.error-icon {
+  font-size: 1.5rem;
+}
+
+.error-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e67e22;
+  margin: 0;
+  flex: 1;
+}
+
+.error-content {
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ffeaa7;
+}
+
+.error-message {
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.error-suggestion {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.budget-tip {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #495057;
+  border-left: 3px solid #d4a762;
+}
+
+/* SUGGESTION REASONING */
+.suggestion-reasoning {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  margin: 1rem 0;
+  border-left: 3px solid #d4a762;
+}
+
+.suggestion-reasoning p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #495057;
+  font-style: italic;
+}
+/* ERROR STATE STYLES */
+.ai-results-container.error-state {
+  border-left: 4px solid #ffa502;
+  background: #fff9e6;
+}
+
+.error-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.error-icon {
+  font-size: 1.5rem;
+}
+
+.error-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #e67e22;
+  margin: 0;
+  flex: 1;
+}
+
+.error-content {
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #ffeaa7;
+}
+
+.error-message {
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.error-suggestion {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.budget-tip {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #495057;
+  border-left: 3px solid #d4a762;
+}
+
+/* SUGGESTION REASONING */
+.suggestion-reasoning {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  margin: 1rem 0;
+  border-left: 3px solid #d4a762;
+}
+
+.suggestion-reasoning p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #495057;
+  font-style: italic;
+}
+
+/* ADD TO OrderGenerator.css - TEXT OVERFLOW FIXES */
+
+/* Fix long item names in suggestions */
+.suggestion-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  min-height: 2.5rem; /* Ensure consistent height */
+}
+
+.item-name {
+  font-weight: 500;
+  color: #000;
+  flex: 1; /* Take available space */
+  margin-right: 1rem;
+  /* 🚨 NEW: Handle long text */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 70%; /* Prevent taking all space */
+}
+
+.item-price {
+  font-weight: 600;
+  color: #666;
+  white-space: nowrap; /* Keep price on one line */
+  flex-shrink: 0; /* Don't shrink the price */
+}
+
+/* Fix suggestion card layout for long content */
+.suggestion-card {
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  min-height: 200px; /* Ensure consistent card height */
+  display: flex;
+  flex-direction: column;
+}
+
+.suggestion-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex: 1; /* Take available space */
+}
+
+/* Ensure header doesn't break */
+.suggestion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  flex-shrink: 0; /* Don't shrink header */
+}
+
+.suggestion-number {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 60%;
+}
+
+.suggestion-total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #d4a762;
+  white-space: nowrap;
+}
+
+/* Fix reasoning text overflow */
+.suggestion-reasoning {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  margin: 1rem 0;
+  border-left: 3px solid #d4a762;
+  flex-shrink: 0; /* Don't shrink reasoning */
+}
+
+.suggestion-reasoning p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #495057;
+  font-style: italic;
+  /* 🚨 NEW: Handle long reasoning */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Footer fix */
+.suggestion-footer {
+  text-align: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f0f0f0;
+  flex-shrink: 0; /* Don't shrink footer */
+}
+
+/* Mobile responsive improvements */
+@media screen and (max-width: 768px) {
+  .suggestion-card {
+    padding: 1rem;
+    min-height: 180px;
+  }
+  
+  .item-name {
+    max-width: 65%; /* Slightly less on mobile */
+    font-size: 0.9rem;
+  }
+  
+  .item-price {
+    font-size: 0.9rem;
+  }
+  
+  .suggestion-reasoning p {
+    -webkit-line-clamp: 2; /* Only 2 lines on mobile */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .suggestion-card {
+    padding: 0.8rem;
+    min-height: 160px;
+  }
+  
+  .item-name {
+    max-width: 60%;
+    font-size: 0.85rem;
+  }
+  
+  .suggestion-number {
+    font-size: 1rem;
+    max-width: 50%;
+  }
+  
+  .suggestion-total {
+    font-size: 1.1rem;
+  }
+}
