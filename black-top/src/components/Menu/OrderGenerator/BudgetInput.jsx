@@ -35,17 +35,19 @@ const BudgetInput = ({ onGenerateSuggestions, isLoading }) => {
             What's your budget?
           </label>
           <div className="input-wrapper">
-            <input
-              type="text"
-              id="budget"
-              value={budget}
-              onChange={handleBudgetChange}
-              onKeyPress={handleKeyPress}
-              placeholder="Enter amount"
-              className="budget-input"
-              maxLength="3"
-              disabled={isLoading}
-            />
+           <input
+            type="text"
+            inputMode="numeric"  
+            pattern="[0-9]*"    
+            id="budget"
+            value={budget}
+            onChange={handleBudgetChange}
+            onKeyPress={handleKeyPress}
+            placeholder="Enter amount"
+            className="budget-input"
+            maxLength="3"
+            disabled={isLoading}
+          />
             <span className="currency-symbol">DH</span>
           </div>
           <p className="budget-hint">

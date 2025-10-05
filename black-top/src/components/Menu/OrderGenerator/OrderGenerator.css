@@ -592,9 +592,7 @@
     font-size: 0.9rem;
   }
   
-  .suggestion-reasoning p {
-    -webkit-line-clamp: 2; /* Only 2 lines on mobile */
-  }
+  
 }
 
 @media screen and (max-width: 480px) {

@@ -2,7 +2,7 @@
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
-// 🚨 NEW: Fuzzy matching function
+// Fuzzy matching function
 function findBestMatch(itemName, availableItems) {
   const cleanName = itemName.toLowerCase().trim();
   
@@ -77,7 +77,7 @@ function findBestMatch(itemName, availableItems) {
   return null;
 }
 
-// 🚨 NEW: Common item name mappings for known issues
+// Common item name mappings for known issues
 const commonItemMappings = {
   // French/English variations
   'latté': 'Latte',
@@ -100,7 +100,7 @@ const commonItemMappings = {
   'caramell': 'Caramel'
 };
 
-// 🚨 NEW: Price validation and correction
+// Price validation and correction
 function validateAndCorrectPrices(suggestions, availableItems) {
   return suggestions.map(suggestion => {
     if (!suggestion.items || !Array.isArray(suggestion.items)) {
@@ -185,7 +185,7 @@ export async function generateMenuSuggestions(availableItems, budget, activeCate
       description: item.description || ""
     }));
 
-    // IMPROVED PROMPT WITH STRICT NAME REQUIREMENTS
+    // IMPROVED PROMPT WITH DRINK+DESSERT PAIRING RULES
     const systemPrompt = isLowBudget 
       ? `You are a cafe menu expert at Blacktop Coffee. The user has a LIMITED budget.
          Suggest 1-2 affordable items that fit within their budget.
@@ -194,7 +194,6 @@ export async function generateMenuSuggestions(availableItems, budget, activeCate
          - Suggest 1-2 items MAXIMUM
          - Total price MUST be less than or equal to budget
          - Use EXACT item names from this list: ${availableItems.map(item => item.name).join(', ')}
-         - Calculate total price ACCURATELY using actual menu prices
          - Focus on best value items
          - Single items are acceptable
          - Return ONLY valid JSON
@@ -215,8 +214,10 @@ export async function generateMenuSuggestions(availableItems, budget, activeCate
          CRITICAL RULES:
          - Total price MUST be less than or equal to budget
          - Use EXACT item names from this list: ${availableItems.map(item => item.name).join(', ')}
-         - Calculate total price ACCURATELY using actual menu prices
-         - Prefer logical pairings (coffee + pastry, drink + dessert)
+         - For 2-item combinations: ALWAYS pair ONE drink with ONE dessert/food item
+         - For 3-item combinations: Include variety (drink + food + maybe another item)
+         - NEVER suggest multiple drinks only or multiple desserts only
+         - Prefer logical pairings (coffee + pastry, tea + crepe, smoothie + donut)
          - Consider item descriptions for complementary flavors
          - Return ONLY valid JSON, no other text or explanations
          
@@ -224,7 +225,7 @@ export async function generateMenuSuggestions(availableItems, budget, activeCate
          {
            "suggestions": [
              {
-               "items": ["Exact Item Name 1", "Exact Item Name 2"],
+               "items": ["Exact Drink Name", "Exact Food Name"],
                "totalPrice": 65,
                "reasoning": "Brief explanation why this combo works well"
              }
@@ -280,7 +281,7 @@ export async function generateMenuSuggestions(availableItems, budget, activeCate
       throw new Error('Invalid AI response format: missing suggestions array');
     }
 
-    // 🚨 ENHANCED: Validate and correct prices
+    // Validate and correct prices
     const validatedSuggestions = validateAndCorrectPrices(parsed.suggestions, availableItems);
 
     // Filter suggestions that still fit budget after price correction
