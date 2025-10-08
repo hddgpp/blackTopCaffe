@@ -123,17 +123,15 @@ Fallback: Smart algorithm when AI is unavailable
 This project is licensed under the MIT License - see the LICENSE.md file for details.
 
 👨‍💻 Developer
-Youssef (hddgpp)
-Full-Stack Developer & AI Enthusiast
+Youssef (hddgpp) 
+front-end Developer & AI Enthusiast
 
 GitHub: @hddgpp
 
-Email: youssefhehe3@example.com
+Email: youssef.dev.ai@outlook.com
 
 🙏 Acknowledgments
 Groq API for lightning-fast AI inference
-
-React Icons for beautiful iconography
 
 Google Maps for location services
 
