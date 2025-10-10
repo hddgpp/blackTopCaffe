@@ -7,6 +7,10 @@ A sleek, responsive website for Blacktop Coffee built with React and modern CSS.
 ## 🚀 Live Demo
 [View Live Site](https://blacktopcoffee.netlify.app)
 
+## HEADER
+<img width="1900" height="878" alt="image" src="https://github.com/user-attachments/assets/2ab6835e-ecb3-43d9-9df3-4e8f1f7c116e" />
+
+
 ## ✨ Features
 
 - **🤖 AI Order Generator** - Get personalized menu suggestions based on your budget
@@ -29,6 +33,9 @@ A sleek, responsive website for Blacktop Coffee built with React and modern CSS.
 ## 🎯 AI Order Generator
 
 The **standout feature** - an intelligent menu assistant that:
+
+<img width="1897" height="874" alt="image" src="https://github.com/user-attachments/assets/9bb97a75-5e0b-4651-9caa-f633d2b185dc" />
+
 
 ### How It Works:
 1. **Enter Your Budget** - Set your spending limit in DH
@@ -116,17 +123,15 @@ Fallback: Smart algorithm when AI is unavailable
 This project is licensed under the MIT License - see the LICENSE.md file for details.
 
 👨‍💻 Developer
-Youssef (hddgpp)
-Full-Stack Developer & AI Enthusiast
+Youssef (hddgpp) 
+front-end Developer & AI Enthusiast
 
 GitHub: @hddgpp
 
-Email: youssefhehe3@example.com
+Email: youssef.dev.ai@outlook.com
 
 🙏 Acknowledgments
 Groq API for lightning-fast AI inference
-
-React Icons for beautiful iconography
 
 Google Maps for location services
 
