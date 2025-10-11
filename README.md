@@ -82,8 +82,8 @@ text
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/hddgpp/blacktop-coffee.git
-   cd blacktop-coffee
+   git clone https://github.com/hddgpp/blacktopcoffe.git
+   cd black-top
 Install dependencies
 
 bash
