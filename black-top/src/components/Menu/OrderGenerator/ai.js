@@ -1,46 +1,39 @@
-// components/OrderGenerator/ai.js
+
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
-// Fuzzy matching function
 function findBestMatch(itemName, availableItems) {
   const cleanName = itemName.toLowerCase().trim();
   
-  // Exact match first
+
   const exactMatch = availableItems.find(item => 
     item.name.toLowerCase().trim() === cleanName
   );
   if (exactMatch) return exactMatch;
 
-  // Remove accents and special characters
+  // Removing accents and special characters
   const normalize = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   const normalizedTarget = normalize(cleanName);
   
-  // Try different matching strategies
   const matches = availableItems.map(item => {
     const normalizedItem = normalize(item.name.toLowerCase().trim());
     let score = 0;
 
-    // Contains match (high score)
     if (normalizedItem.includes(normalizedTarget) || normalizedTarget.includes(normalizedItem)) {
       score += 50;
     }
 
-    // Word boundary matches
     const targetWords = normalizedTarget.split(/\s+/);
     const itemWords = normalizedItem.split(/\s+/);
     
-    // Count matching words
     const matchingWords = targetWords.filter(word => 
       itemWords.some(itemWord => itemWord.includes(word) || word.includes(itemWord))
     );
     score += matchingWords.length * 10;
 
-    // Length similarity
     const lengthDiff = Math.abs(normalizedItem.length - normalizedTarget.length);
     score -= lengthDiff * 0.5;
 
-    // Common substitutions
     const commonSubs = {
       'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
       'à': 'a', 'â': 'a', 'ä': 'a',
@@ -77,7 +70,6 @@ function findBestMatch(itemName, availableItems) {
   return null;
 }
 
-// Common item name mappings for known issues
 const commonItemMappings = {
   // French/English variations
   'latté': 'Latte',
@@ -100,7 +92,6 @@ const commonItemMappings = {
   'caramell': 'Caramel'
 };
 
-// Price validation and correction
 function validateAndCorrectPrices(suggestions, availableItems) {
   return suggestions.map(suggestion => {
     if (!suggestion.items || !Array.isArray(suggestion.items)) {
@@ -109,7 +100,6 @@ function validateAndCorrectPrices(suggestions, availableItems) {
 
     // Find actual menu items and calculate real total
     const actualItems = suggestion.items.map(itemName => {
-      // First check common mappings
       const normalizedInput = itemName.toLowerCase().trim();
       if (commonItemMappings[normalizedInput]) {
         const mappedItem = availableItems.find(item => 
@@ -121,12 +111,10 @@ function validateAndCorrectPrices(suggestions, availableItems) {
         }
       }
 
-      // Then try fuzzy matching
       const matchedItem = findBestMatch(itemName, availableItems);
       return matchedItem;
     }).filter(Boolean);
 
-    // Remove duplicates
     const uniqueItems = [];
     const seenNames = new Set();
     actualItems.forEach(item => {
@@ -136,19 +124,16 @@ function validateAndCorrectPrices(suggestions, availableItems) {
       }
     });
 
-    // Calculate actual total price
     const actualTotal = uniqueItems.reduce((total, item) => {
       return total + extractPrice(item.price);
     }, 0);
 
-    // Check if AI's price matches actual price
     const aiPrice = suggestion.totalPrice || 0;
     const priceDifference = Math.abs(actualTotal - aiPrice);
     const priceIsAccurate = priceDifference <= 5; // Allow 5DH tolerance
 
     let correctedReasoning = suggestion.reasoning;
     
-    // Add price accuracy note if needed
     if (!priceIsAccurate && actualTotal <= aiPrice) {
       correctedReasoning = `${suggestion.reasoning} (Price corrected from ${aiPrice}DH)`;
     }
@@ -157,7 +142,7 @@ function validateAndCorrectPrices(suggestions, availableItems) {
 
     return {
       items: uniqueItems.map(item => item.name),
-      totalPrice: actualTotal, // 🎯 ALWAYS use actual price
+      totalPrice: actualTotal, 
       remainingBudget: suggestion.remainingBudget,
       reasoning: correctedReasoning,
       wasPriceCorrected: !priceIsAccurate,
@@ -178,14 +163,12 @@ export async function generateMenuSuggestions(availableItems, budget, activeCate
       isLowBudget 
     });
 
-    // Prepare menu data for AI
     const menuData = availableItems.map(item => ({
       name: item.name,
       price: item.price,
       description: item.description || ""
     }));
 
-    // IMPROVED PROMPT WITH DRINK+DESSERT PAIRING RULES
     const systemPrompt = isLowBudget 
       ? `You are a cafe menu expert at Blacktop Coffee. The user has a LIMITED budget.
          Suggest 1-2 affordable items that fit within their budget.
@@ -268,7 +251,6 @@ export async function generateMenuSuggestions(availableItems, budget, activeCate
     const aiContent = data.choices[0].message.content;
     console.log('AI Raw Response:', aiContent);
 
-    // Parse and validate AI response
     let parsed;
     try {
       parsed = JSON.parse(aiContent);
@@ -281,10 +263,8 @@ export async function generateMenuSuggestions(availableItems, budget, activeCate
       throw new Error('Invalid AI response format: missing suggestions array');
     }
 
-    // Validate and correct prices
     const validatedSuggestions = validateAndCorrectPrices(parsed.suggestions, availableItems);
 
-    // Filter suggestions that still fit budget after price correction
     const budgetValidSuggestions = validatedSuggestions.filter(suggestion => 
       suggestion.totalPrice <= budget
     );
@@ -298,7 +278,6 @@ export async function generateMenuSuggestions(availableItems, budget, activeCate
   }
 }
 
-// Utility function to extract price
 export function extractPrice(priceString) {
   return parseInt(priceString.replace('DH', '').trim());
 }
